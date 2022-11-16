@@ -31,7 +31,7 @@
           "
           @click="handlePanelChange(item.panel)"
         >
-          {{ item.label }}
+          {{ getYearBE(item) }}
         </button>
       </span>
     </div>
@@ -126,6 +126,10 @@ export default {
     getCellClasses: {
       type: Function,
       default: () => [],
+    },
+    lang: {
+      type: [String, Object],
+      default: 'en',
     },
   },
   computed: {
@@ -245,6 +249,13 @@ export default {
     },
     getWeekNumber(date) {
       return this.getWeek(date, this.getLocale().formatLocale);
+    },
+    getYearBE(data) {
+      if (data.panel === 'year' && this.lang === 'th') {
+        return `${Number(data.label) + 543}`;
+      }
+
+      return data.label;
     },
   },
 };

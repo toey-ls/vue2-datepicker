@@ -69,10 +69,15 @@ export default {
       type: Function,
       default: () => [],
     },
+    lang: {
+      type: [String, Object],
+      default: 'en',
+    },
   },
   computed: {
     calendarYear() {
-      return this.calendar.getFullYear();
+      const currentYear = this.calendar.getFullYear();
+      return this.lang === 'th' ? currentYear + 543 : currentYear;
     },
     months() {
       const locale = this.getLocale();

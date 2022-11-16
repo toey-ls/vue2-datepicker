@@ -27,7 +27,8 @@
             class="cell"
             :class="getCellClasses(cell)"
           >
-            <div>{{ cell }}</div>
+            <div v-if="lang === 'th'">{{ cell + 543 }}</div>
+            <div v-else>{{ cell }}</div>
           </td>
         </tr>
       </table>
@@ -64,6 +65,10 @@ export default {
     getYearPanel: {
       type: Function,
     },
+    lang: {
+      type: [String, Object],
+      default: 'en',
+    },
   },
   computed: {
     years() {
@@ -74,10 +79,16 @@ export default {
       return this.getYears(calendar);
     },
     firstYear() {
+      if (this.lang === 'th') {
+        return this.years[0][0] + 543;
+      }
       return this.years[0][0];
     },
     lastYear() {
       const last = arr => arr[arr.length - 1];
+      if (this.lang === 'th') {
+        return last(last(this.years)) + 543;
+      }
       return last(last(this.years));
     },
   },

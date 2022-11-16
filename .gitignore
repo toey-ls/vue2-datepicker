@@ -7,8 +7,8 @@ node_modules
 
 /dist
 
-/locale
+# /locale
 
-/index.*
+# /index.*
 
-/scss
+# /scss

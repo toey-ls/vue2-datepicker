@@ -18,6 +18,10 @@ export default {
       type: Boolean,
       default: undefined,
     },
+    lang: {
+      type: [String, Object],
+      default: 'en',
+    },
   },
   data() {
     return {

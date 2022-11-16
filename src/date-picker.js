@@ -255,6 +255,15 @@ export default {
       if (typeof this.getFormatter('stringify') === 'function') {
         return this.getFormatter('stringify')(date, fmt);
       }
+
+      if (this.lang === 'th' && `${fmt}`.includes('YYYY')) {
+        const fmtBE = `${fmt}`.replace('YYYY', 'BBBB');
+        const defaultDateFormat = format(date, fmtBE, { locale: this.locale.formatLocale });
+        const currentYearCE = new Date(date).getFullYear();
+
+        return defaultDateFormat.replace('BBBB', currentYearCE + 543);
+      }
+
       return format(date, fmt, { locale: this.locale.formatLocale });
     },
     // transform the outer value to inner date
@@ -514,6 +523,7 @@ export default {
           {this.renderSlot('content', content, {
             value: this.currentValue,
             emit: this.handleSelectDate,
+            lang: this.lang,
           })}
         </div>
       );

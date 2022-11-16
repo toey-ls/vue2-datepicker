@@ -66,6 +66,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    lang: {
+      type: [String, Object],
+      default: 'en',
+    },
   },
   data() {
     const panels = ['date', 'month', 'year'];
@@ -251,6 +255,7 @@ export default {
           getYearPanel={this.getYearPanel}
           onSelect={this.handleSelectYear}
           onChangecalendar={this.handleCalendarChange}
+          lang={this.lang}
         />
       );
     }
@@ -263,6 +268,7 @@ export default {
           onSelect={this.handleSelectMonth}
           onChangepanel={this.handelPanelChange}
           onChangecalendar={this.handleCalendarChange}
+          lang={this.lang}
         />
       );
     }
@@ -280,6 +286,7 @@ export default {
         onSelect={this.handleSelectDate}
         onChangepanel={this.handelPanelChange}
         onChangecalendar={this.handleCalendarChange}
+        lang={this.lang}
       />
     );
   },
